@@ -39,7 +39,7 @@ resource "aws_autoscaling_group" "prod-web-servers" {
   placement_group           = "${aws_placement_group.web.id}"
   launch_template {
     id      = "${aws_launch_template.web.id}"
-    version = "$$Latest"
+    version = "$Latest"
   }
 
   timeouts {
