@@ -37,7 +37,7 @@ resource "aws_autoscaling_group" "prod-web-servers" {
   desired_capacity          = 4
   force_delete              = true
   placement_group           = "${aws_placement_group.web.id}"
-  launch_template = {
+  launch_template {
     id      = "${aws_launch_template.web.id}"
     version = "$$Latest"
   }
