@@ -14,7 +14,36 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
-resource "aws_instance" "web" {
-  ami           = "${data.aws_ami.ubuntu.id}"
+resource "aws_launch_template" "web" {
+  name = "web-template"
+  disable_api_termination = true
+  image_id = "${data.aws_ami.ubuntu.id}"
+  instance_initiated_shutdown_behavior = "terminate"
   instance_type = "t3.micro"
+  vpc_security_group_ids = ["<sg-1>"]
+}
+
+resource "aws_placement_group" "web" {
+  name     = "web"
+  strategy = "cluster"
+}
+
+resource "aws_autoscaling_group" "prod-web-servers" {
+  name                      = "prod-web-servers"
+  max_size                  = 5
+  min_size                  = 2
+  health_check_grace_period = 300
+  health_check_type         = "ELB"
+  desired_capacity          = 4
+  force_delete              = true
+  placement_group           = "${aws_placement_group.web.id}"
+  launch_template = {
+    id      = "${aws_launch_template.web.id}"
+    version = "$$Latest"
+  }
+  vpc_zone_identifier       = ["${aws_subnet.example1.id}", "${aws_subnet.example2.id}"]
+
+  timeouts {
+    delete = "15m"
+  }
 }
