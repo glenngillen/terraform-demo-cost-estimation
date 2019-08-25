@@ -41,7 +41,6 @@ resource "aws_autoscaling_group" "prod-web-servers" {
     id      = "${aws_launch_template.web.id}"
     version = "$$Latest"
   }
-  vpc_zone_identifier       = ["${aws_subnet.example1.id}", "${aws_subnet.example2.id}"]
 
   timeouts {
     delete = "15m"
