@@ -20,7 +20,7 @@ resource "aws_launch_template" "web" {
   image_id = "${data.aws_ami.ubuntu.id}"
   instance_initiated_shutdown_behavior = "terminate"
   instance_type = "t3.micro"
-  vpc_security_group_ids = ["<sg-1>"]
+  vpc_security_group_ids = ["sg-2a1ea154"]
 }
 
 resource "aws_placement_group" "web" {
@@ -30,11 +30,11 @@ resource "aws_placement_group" "web" {
 
 resource "aws_autoscaling_group" "prod-web-servers" {
   name                      = "prod-web-servers"
-  max_size                  = 5
-  min_size                  = 2
+  max_size                  = 1
+  min_size                  = 0
   health_check_grace_period = 300
   health_check_type         = "ELB"
-  desired_capacity          = 4
+  desired_capacity          = 1
   force_delete              = true
   placement_group           = "${aws_placement_group.web.id}"
   launch_template {
