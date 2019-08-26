@@ -37,7 +37,7 @@ resource "aws_autoscaling_group" "prod-web-servers" {
   desired_capacity          = 1
   force_delete              = true
   placement_group           = "${aws_placement_group.web.id}"
-  vpc_zone_identifier       = ["subnet-17f6a32b"]
+  vpc_zone_identifier       = ["subnet-315fa51d","subnet-823f88ca","subnet-a256a6f8","subnet-f19625fd","subnet-f9a68a9c"]
   launch_template {
     id      = "${aws_launch_template.web.id}"
     version = "$Latest"
