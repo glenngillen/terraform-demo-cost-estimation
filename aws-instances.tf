@@ -14,6 +14,18 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
+resource "aws_subnet" "us-east-1a" {
+}
+resource "aws_subnet" "us-east-1b" {
+}
+resource "aws_subnet" "us-east-1c" {
+}
+resource "aws_subnet" "us-east-1d" {
+}
+resource "aws_subnet" "us-east-1e" {
+}
+resource "aws_subnet" "us-east-1f" {
+}
 resource "aws_launch_template" "web" {
   name = "web-template"
   disable_api_termination = true
