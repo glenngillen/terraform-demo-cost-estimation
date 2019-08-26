@@ -1,6 +1,26 @@
 variable "instance_type" {
   type    = "string"
-  default = "t2.micro"
+  default = "t3.micro"
+}
+
+resource "aws_autoscaling_group" "prod-web-servers" {
+  name                      = "prod-web-servers"
+  max_size                  = 3
+  min_size                  = 0
+  health_check_grace_period = 300
+  health_check_type         = "ELB"
+  desired_capacity          = 0
+  force_delete              = true
+  placement_group           = "${aws_placement_group.web.id}"
+  vpc_zone_identifier       = [aws_subnet.us-east-1a.id, aws_subnet.us-east-1b.id, aws_subnet.us-east-1c.id, aws_subnet.us-east-1d.id, aws_subnet.us-east-1f.id]
+  launch_template {
+    id      = "${aws_launch_template.web.id}"
+    version = "$Latest"
+  }
+
+  timeouts {
+    delete = "15m"
+  }
 }
 
 variable "vpc_id" {
@@ -66,24 +86,4 @@ resource "aws_launch_template" "web" {
 resource "aws_placement_group" "web" {
   name     = "web"
   strategy = "spread"
-}
-
-resource "aws_autoscaling_group" "prod-web-servers" {
-  name                      = "prod-web-servers"
-  max_size                  = 3
-  min_size                  = 0
-  health_check_grace_period = 300
-  health_check_type         = "ELB"
-  desired_capacity          = 0
-  force_delete              = true
-  placement_group           = "${aws_placement_group.web.id}"
-  vpc_zone_identifier       = [aws_subnet.us-east-1a.id, aws_subnet.us-east-1b.id, aws_subnet.us-east-1c.id, aws_subnet.us-east-1d.id, aws_subnet.us-east-1f.id]
-  launch_template {
-    id      = "${aws_launch_template.web.id}"
-    version = "$Latest"
-  }
-
-  timeouts {
-    delete = "15m"
-  }
 }
