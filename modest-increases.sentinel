@@ -1,6 +1,5 @@
 import "tfrun"
-import "decimal"
 
 main = rule {
-  decimal.new(tfrun.cost_estimate.proposed_monthly_cost).less_than(500)
+  float(tfrun.cost_estimate.delta_monthly_cost) < 500
 }
