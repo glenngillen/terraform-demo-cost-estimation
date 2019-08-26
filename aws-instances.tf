@@ -25,7 +25,7 @@ resource "aws_launch_template" "web" {
 
 resource "aws_placement_group" "web" {
   name     = "web"
-  strategy = "cluster"
+  strategy = "spread"
 }
 
 resource "aws_autoscaling_group" "prod-web-servers" {
