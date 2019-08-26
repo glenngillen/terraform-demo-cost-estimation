@@ -14,17 +14,33 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
+variable "vpc_id" {
+  value = "vpc-01e40d78"
+}
+
 resource "aws_subnet" "us-east-1a" {
+  vpc_id      = var.vpc_id
+  cidr_block  = "172.31.16.0/20"
 }
 resource "aws_subnet" "us-east-1b" {
+  vpc_id      = var.vpc_id
+  cidr_block  = "172.31.32.0/20"
 }
 resource "aws_subnet" "us-east-1c" {
+  vpc_id      = var.vpc_id
+  cidr_block  = "172.31.0.0/20"
 }
 resource "aws_subnet" "us-east-1d" {
+  vpc_id      = var.vpc_id
+  cidr_block  = "172.31.64.0/20"
 }
 resource "aws_subnet" "us-east-1e" {
+  vpc_id      = var.vpc_id
+  cidr_block  = "172.31.48.0/20"
 }
 resource "aws_subnet" "us-east-1f" {
+  vpc_id      = var.vpc_id
+  cidr_block  = "172.31.80.0/20"
 }
 resource "aws_launch_template" "web" {
   name = "web-template"
