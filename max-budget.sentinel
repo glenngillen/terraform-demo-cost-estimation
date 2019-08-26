@@ -2,5 +2,5 @@ import "tfrun"
 import "decimal"
 
 main = rule {
-  print(tfrun.cost_estimate) and decimal(tfrun.cost_estimate.proposed_monthly_cost) < 10000
+  print(tfrun.cost_estimate) and decimal.new(tfrun.cost_estimate.proposed_monthly_cost) < 10000
 }
