@@ -1,5 +1,5 @@
 import "tfrun"
 
 main = rule {
-  print(tfrun.cost_estimate) and float(tfrun.cost_estimate.proposed_monthly_cost) < 10000
+  float(tfrun.cost_estimate.proposed_monthly_cost) < 10000
 }
