@@ -70,11 +70,11 @@ resource "aws_placement_group" "web" {
 
 resource "aws_autoscaling_group" "prod-web-servers" {
   name                      = "prod-web-servers"
-  max_size                  = 10
-  min_size                  = 0
+  max_size                  = 11
+  min_size                  = 1
   health_check_grace_period = 300
   health_check_type         = "ELB"
-  desired_capacity          = 2
+  desired_capacity          = 3
   force_delete              = true
   placement_group           = "${aws_placement_group.web.id}"
   vpc_zone_identifier       = [aws_subnet.us-east-1a.id, aws_subnet.us-east-1b.id, aws_subnet.us-east-1c.id, aws_subnet.us-east-1d.id, aws_subnet.us-east-1f.id]
