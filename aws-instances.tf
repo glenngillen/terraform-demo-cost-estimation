@@ -2,9 +2,15 @@ variable "instance_type" {
   type    = "string"
   default = "t3.micro"
 }
+
 variable "vpc_id" {
   type    = "string"
   default = "vpc-01e40d78"
+}
+
+variable "default-security-group" {
+  type    = "string"
+  default = "sg-2a1ea154"
 }
 
 data "aws_ami" "ubuntu" {
@@ -47,13 +53,14 @@ resource "aws_subnet" "us-east-1f" {
   vpc_id      = var.vpc_id
   cidr_block  = "172.31.80.0/20"
 }
+
 resource "aws_launch_template" "web" {
   name = "web-template"
   disable_api_termination = true
   image_id = "${data.aws_ami.ubuntu.id}"
   instance_initiated_shutdown_behavior = "terminate"
-  instance_type = "t3.micro"
-  vpc_security_group_ids = ["sg-2a1ea154"]
+  instance_type = var.instance_type
+  vpc_security_group_ids = [var.default-security-group]
 }
 
 resource "aws_placement_group" "web" {
