@@ -1,3 +1,12 @@
+variable "instance_type" {
+  type    = "string"
+  default = "t3.micro"
+}
+variable "vpc_id" {
+  type    = "string"
+  default = "vpc-01e40d78"
+}
+
 data "aws_ami" "ubuntu" {
   most_recent = true
 
@@ -12,11 +21,6 @@ data "aws_ami" "ubuntu" {
   }
 
   owners = ["099720109477"] # Canonical
-}
-
-variable "vpc_id" {
-  type  = "string"
-  default = "vpc-01e40d78"
 }
 
 resource "aws_subnet" "us-east-1a" {
