@@ -15,7 +15,8 @@ data "aws_ami" "ubuntu" {
 }
 
 variable "vpc_id" {
-  value = "vpc-01e40d78"
+  type  = "string"
+  default = "vpc-01e40d78"
 }
 
 resource "aws_subnet" "us-east-1a" {
