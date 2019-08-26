@@ -1,0 +1,5 @@
+import "tfrun"
+
+main = rule {
+  print(tfrun.cost_estimate.delta_monthly_cost) and tfrun.cost_estimate.delta_monthly_cost < 1000
+}
