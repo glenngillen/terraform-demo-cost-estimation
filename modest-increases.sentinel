@@ -1,5 +1,6 @@
 import "tfrun"
+import "decimal"
 
 main = rule {
-  print(tfrun.cost_estimate.delta_monthly_cost) and tfrun.cost_estimate.delta_monthly_cost < 1000
+  print(tfrun.cost_estimate.delta_monthly_cost) and decimal(tfrun.cost_estimate.delta_monthly_cost) < 1000
 }
