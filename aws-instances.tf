@@ -1,11 +1,11 @@
 variable "instance_type" {
   type    = "string"
-  default = "t3.2xlarge"
+  default = "t3.micro"
 }
 
 resource "aws_autoscaling_group" "prod-web-servers" {
   name                      = "prod-web-servers"
-  max_size                  = 100
+  max_size                  = 3
   min_size                  = 0
   health_check_grace_period = 300
   health_check_type         = "ELB"
