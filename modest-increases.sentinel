@@ -1,5 +1,5 @@
 import "tfrun"
 
 main = rule {
-  float(tfrun.cost_estimate.proposed_monthly_cost) < 500
+  float(tfrun.cost_estimate.delta_monthly_cost) < 500
 }
