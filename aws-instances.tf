@@ -92,3 +92,47 @@ resource "aws_s3_account_public_access_block" "global_block" {
   block_public_acls   = true
   block_public_policy = true
 }
+resource "aws_s3_bucket" "bucket-1" {
+  bucket = "cost-estimation-bucket-1"
+  acl    = "private"
+}
+resource "aws_s3_bucket" "bucket-2" {
+  bucket = "cost-estimation-bucket-2  "
+  acl    = "private"
+}
+resource "aws_s3_bucket" "bucket-3" {
+  bucket = "cost-estimation-bucket-3"
+  acl    = "private"
+}
+resource "aws_s3_bucket" "bucket-4" {
+  bucket = "cost-estimation-bucket-4"
+  acl    = "private"
+}
+resource "aws_s3_bucket" "bucket-5" {
+  bucket = "cost-estimation-bucket-5"
+  acl    = "private"
+}
+resource "aws_s3_bucket" "bucket-6" {
+  bucket = "cost-estimation-bucket-6"
+  acl    = "private"
+}
+resource "aws_s3_bucket" "bucket-7" {
+  bucket = "cost-estimation-bucket-7"
+  acl    = "private"
+}
+resource "aws_s3_bucket" "bucket-8" {
+  bucket = "cost-estimation-bucket-8"
+  acl    = "private"
+}
+resource "aws_s3_bucket" "bucket-9" {
+  bucket = "cost-estimation-bucket-9"
+  acl    = "private"
+}
+resource "aws_s3_bucket" "bucket-10" {
+  bucket = "cost-estimation-bucket-10"
+  acl    = "private"
+}
+resource "aws_s3_bucket" "bucket-11" {
+  bucket = "cost-estimation-bucket-11"
+  acl    = "private"
+}
