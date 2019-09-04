@@ -97,7 +97,7 @@ resource "aws_s3_bucket" "bucket-1" {
   acl    = "private"
 }
 resource "aws_s3_bucket" "bucket-2" {
-  bucket = "cost-estimation-bucket-2  "
+  bucket = "cost-estimation-bucket-2"
   acl    = "private"
 }
 resource "aws_s3_bucket" "bucket-3" {
