@@ -136,3 +136,8 @@ resource "aws_s3_bucket" "bucket-11" {
   bucket = "cost-estimation-bucket-11"
   acl    = "private"
 }
+
+resource "aws_instance" "web" {
+  ami           = "${data.aws_ami.ubuntu.id}"
+  instance_type = var.instance_type
+}
