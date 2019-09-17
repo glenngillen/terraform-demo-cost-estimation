@@ -136,3 +136,7 @@ resource "aws_s3_bucket" "bucket-11" {
   bucket = "cost-estimation-bucket-11"
   acl    = "private"
 }
+
+output "ami_id" {
+  value = data.aws_ami.ubuntu.id
+}
