@@ -1,3 +1,6 @@
+variable "vm_size" {
+  default = "Standard_B1s"
+}
 resource "azurerm_resource_group" "main" {
   name     = "${var.prefix}-resources"
   location = "West US"
@@ -71,7 +74,7 @@ resource "azurerm_virtual_machine" "main" {
   }
   tags = {
     environment = "test"
-    owner = "thrashr888"
+    owner = "ggillen"
     organization = "hashicorp"
     application = "example"
   }
