@@ -40,6 +40,12 @@ resource "azurerm_virtual_machine_scale_set" "prod-web-servers" {
       subnet_id = "${azurerm_subnet.internal.id}"
     }
   }
+  storage_profile_os_disk {
+    name              = ""
+    caching           = "ReadWrite"
+    create_option     = "FromImage"
+    managed_disk_type = "Standard_LRS"
+  }
   storage_profile_image_reference {
     publisher = "Canonical"
     offer     = "UbuntuServer"
