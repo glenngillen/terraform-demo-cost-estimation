@@ -24,9 +24,13 @@ resource "azurerm_virtual_machine_scale_set" "prod-web-servers" {
   name                  = "${var.prefix}-vm"
   location              = "${azurerm_resource_group.main.location}"
   resource_group_name   = "${azurerm_resource_group.main.name}"
-  vm_size               = "${var.vm_size}"
   upgrade_policy_mode   = "Automatic"
 
+  sku {
+    name     = "${var.vm_size}"
+    tier     = "Standard"
+    capacity = 0
+  }
   network_profile {
     name    = "WebNetworkProfile"
     primary = true
