@@ -39,12 +39,6 @@ resource "azurerm_virtual_machine_scale_set" "prod-web-servers" {
   network_interface_ids = ["${azurerm_network_interface.main.id}"]
   vm_size               = "${var.vm_size}"
 
-  # Uncomment this line to delete the OS disk automatically when deleting the VM
-  delete_os_disk_on_termination = true
-
-  # Uncomment this line to delete the data disks automatically when deleting the VM
-  delete_data_disks_on_termination = true
-
   storage_profile_image_reference {
     publisher = "Canonical"
     offer     = "UbuntuServer"
@@ -52,6 +46,7 @@ resource "azurerm_virtual_machine_scale_set" "prod-web-servers" {
     version   = "latest"
   }
   os_profile {
+    computer_name_prefix = "${var.prefix}-vm-"
     admin_username = "${var.username}"
     admin_password = "${var.password}"
 
