@@ -58,7 +58,6 @@ resource "azurerm_virtual_machine_scale_set" "prod-web-servers" {
     managed_disk_type = "Standard_LRS"
   }
   os_profile {
-    computer_name  = "hostname"
     admin_username = "${var.username}"
     admin_password = "${var.password}"
 
