@@ -20,18 +20,6 @@ resource "azurerm_subnet" "internal" {
   address_prefix       = "10.0.2.0/24"
 }
 
-resource "azurerm_network_interface" "main" {
-  name                = "${var.prefix}-nic"
-  location            = "${azurerm_resource_group.main.location}"
-  resource_group_name = "${azurerm_resource_group.main.name}"
-
-  ip_configuration {
-    name                          = "testconfiguration1"
-    subnet_id                     = "${azurerm_subnet.internal.id}"
-    private_ip_address_allocation = "Dynamic"
-  }
-}
-
 resource "azurerm_virtual_machine_scale_set" "prod-web-servers" {
   name                  = "${var.prefix}-vm"
   location              = "${azurerm_resource_group.main.location}"
@@ -39,6 +27,15 @@ resource "azurerm_virtual_machine_scale_set" "prod-web-servers" {
   network_interface_ids = ["${azurerm_network_interface.main.id}"]
   vm_size               = "${var.vm_size}"
 
+  network_profile {
+    name    = "WebNetworkProfile"
+    primary = true
+    ip_configuration {
+      name      = "${var.prefix}-nic"
+      primary   = true
+      subnet_id = "${azurerm_subnet.internal.id}"
+    }
+  }
   storage_profile_image_reference {
     publisher = "Canonical"
     offer     = "UbuntuServer"
