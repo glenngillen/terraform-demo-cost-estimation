@@ -23,11 +23,11 @@
 #  }
 #}
 #
-#variable "vpc_id" {
-#  type    = "string"
-#  default = "vpc-01e40d78"
-#}
-#
+variable "vpc_id" {
+  type    = "string"
+  default = "vpc-01e40d78"
+}
+
 #variable "default-security-group" {
 #  type    = "string"
 #  default = "sg-2a1ea154"
