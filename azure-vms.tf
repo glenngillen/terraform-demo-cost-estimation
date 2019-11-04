@@ -44,6 +44,17 @@ resource "azurerm_virtual_machine" "main" {
     application = "example"
   }
 }
+resource "azurerm_network_interface" "main" {
+  name                = "${var.prefix}-nic"
+  location            = "${azurerm_resource_group.main.location}"
+  resource_group_name = "${azurerm_resource_group.main.name}"
+
+  ip_configuration {
+    name                          = "testconfiguration1"
+    subnet_id                     = "${azurerm_subnet.internal.id}"
+    private_ip_address_allocation = "Dynamic"
+  }
+}
 resource "azurerm_resource_group" "main" {
   name     = "${var.prefix}-resources"
   location = "West US"
