@@ -65,10 +65,10 @@
 #  vpc_id      = var.vpc_id
 #  cidr_block  = "172.31.64.0/20"
 #}
-#resource "aws_subnet" "us-east-1e" {
-#  vpc_id      = var.vpc_id
-#  cidr_block  = "172.31.48.0/20"
-#}
+resource "aws_subnet" "us-east-1e" {
+  vpc_id      = var.vpc_id
+  cidr_block  = "172.31.48.0/20"
+}
 #resource "aws_subnet" "us-east-1f" {
 #  vpc_id      = var.vpc_id
 #  cidr_block  = "172.31.80.0/20"
