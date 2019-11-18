@@ -6,5 +6,5 @@ within_budget = rule {
 }
 
 main = rule {
-  true
+  within_budget
 }

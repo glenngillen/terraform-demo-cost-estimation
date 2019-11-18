@@ -6,5 +6,5 @@ within_increase = rule {
 }
 
 main = rule {
-  true
+  within_increase
 }
