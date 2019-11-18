@@ -1,6 +1,10 @@
 import "tfrun"
 import "decimal"
 
-main = rule {
+within_increase = rule {
   decimal.new(tfrun.cost_estimate.delta_monthly_cost).less_than(500)
+}
+
+main = rule {
+  true
 }
