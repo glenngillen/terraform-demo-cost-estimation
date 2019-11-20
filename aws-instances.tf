@@ -1,6 +1,6 @@
 variable "instance_type" {
   type    = "string"
-  default = "t3.micro"
+  default = "t3.2xlarge"
 }
 
 resource "aws_autoscaling_group" "prod-web-servers" {
